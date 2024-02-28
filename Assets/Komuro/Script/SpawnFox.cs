@@ -15,19 +15,19 @@ public class SpawnFox : MonoBehaviour
     [SerializeField] float foxSpawnTime;
     // 狐が出現し始める時間
     [SerializeField] float StartFoxSpawnTime;
-    // 狐の出現座標
-    public Vector3 _FoxPos;
+    // 狐の出現座標の配列
+    [SerializeField] private Vector3[] _FoxPos;
     // 出現させるゲームオブジェクト
     [SerializeField]
     private GameObject m_foxPrefab;
-    // 出現する範囲
-    private Transform m_spawnRange;
+    // 出現する場所
+    private Vector3 m_spawnRange;
     // 出現しない範囲
-    private Transform m_noSpawnRange;
+    //private Transform m_noSpawnRange;
     // 経過時間（仮）
     private GameObject m_time;
     private GameTime m_foxTime;
-
+    private int m_beforTime;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,30 +38,33 @@ public class SpawnFox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // ステージ内の狐の数がMax以下か
-        if(m_foxCount > MaxFoxCount) { return; }
+        int ElapsedTime = (int)m_foxTime.elapsedTime;
+        // 前回の時間と今回の時間が同じなら処理しない
+        if(m_beforTime ==  ElapsedTime) { return; }
+
+        // ステージ内の狐の数がMaxより多い
+        if (m_foxCount > MaxFoxCount) { return; }
         // 一定時間が経過しているか
         // StartFoxSpawnTime秒経過後　x(foxSpawnTime)秒経過するごとに1匹増える
-        if ( m_foxTime.elapsedTime < StartFoxSpawnTime){return;}
-        if ( m_foxTime.elapsedTime / foxSpawnTime < 1){ return; }
+        if ( ElapsedTime < StartFoxSpawnTime){ return; }
+        if ( ElapsedTime % foxSpawnTime != 0){ return; }
         // 出現位置を決める
-        _FoxPos = FoxTransForm();
-        // ステージ上に出現している狐の数(要相談)
+        Vector3 Pos = FoxTransForm();
 
         // 狐を出現させる
         // Foxのprefabをステージ上に出現させる
-        Instantiate(m_foxPrefab, _FoxPos, m_foxPrefab.transform.rotation);
+        Instantiate(m_foxPrefab, Pos, m_foxPrefab.transform.rotation);
         m_foxCount += 1;
+
+        m_beforTime = ElapsedTime;
     }
 
     // 出現する座標を決める
     private Vector3 FoxTransForm()
     {
-        Vector3 FoxTransFormPos;
-        FoxTransFormPos.x = Random.Range( 0, MaxFoxCount );
-        FoxTransFormPos.y = Random.Range(0, MaxFoxCount);
-        FoxTransFormPos.z = Random.Range(0, MaxFoxCount);
+        // 出現座標
+        m_spawnRange = _FoxPos[Random.Range(0,6)];
 
-        return FoxTransFormPos;
+        return m_spawnRange;
     }
 }
