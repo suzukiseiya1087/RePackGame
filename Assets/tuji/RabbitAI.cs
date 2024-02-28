@@ -6,7 +6,7 @@ public class RabbitAI : MonoBehaviour
 {
     public bool m_inFox = false;
     public bool m_inCarrot = false;
-
+    public bool m_inFence = false;
     private bool m_obieru=false;
 
     //動いているか？
@@ -33,7 +33,7 @@ public class RabbitAI : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(m_inCarrot);
+        //Debug.Log(m_inCarrot);
 
         //おびえてるときは何もしない
         if (m_obieru==true)
@@ -48,9 +48,9 @@ public class RabbitAI : MonoBehaviour
             m_nextMoveTime = Time.time + m_moveInterval; // 次の動作時間を更新
         }
 
+        // 移動中の処理
         if (m_isMoving)
         {
-            // 移動中の処理
             float elapsedTime = Time.time - m_moveStartTime;
             float time = Mathf.Clamp01(elapsedTime / m_moveDuration);
             transform.position = Vector2.Lerp(transform.position, m_targetPosition, time);
@@ -61,7 +61,10 @@ public class RabbitAI : MonoBehaviour
             }
         }
 
+        //なつき度
         Natuki();
+
+
         //Debug.Log(m_natuki);
 
         //if (Input.GetKeyDown(KeyCode.A))
@@ -122,7 +125,6 @@ public class RabbitAI : MonoBehaviour
                 direction = Vector2.down;
                 break;
         }
-
 
         // 移動距離
         float distance = Random.Range(1, 4); 
@@ -203,10 +205,16 @@ public class RabbitAI : MonoBehaviour
         {
             m_inFox = true;
 
+            //柵の中にいる場合
+            if (m_inFence)
+            {
+
+            }
+
             // アイテムに向かっての方向ベクトルを計算
             Vector2 direction = (transform.position - collision.transform.position).normalized;
 
-            //近づく速度
+            //遠ざかる速度
             Vector2 approachVelocity = direction * m_speed;
 
             // 速度を適用

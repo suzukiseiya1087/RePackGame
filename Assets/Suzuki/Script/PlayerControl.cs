@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviour
     public float throwForce = 5f; // –Ø‚ÌÀ‚ğ“Š‚°‚é—Í
     public float pickupRange = 2f; // –Ø‚ÌÀ‚ğE‚¤”ÍˆÍ
     public bool isHoldingCarrot = true; // Å‰‚Í‚É‚ñ‚¶‚ñ‚ğ‚Á‚Ä‚¢‚éó‘Ô
-
+    
     public int carrots = 0;
 
     private int nutCount = 0; // ƒvƒŒƒCƒ„[‚ª‚Á‚Ä‚¢‚é–Ø‚ÌÀ‚Ì”
