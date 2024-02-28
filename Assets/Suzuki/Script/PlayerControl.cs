@@ -22,19 +22,21 @@ public class PlayerControl : MonoBehaviour
 
     private int carrotCount = 5; // 最初は5本のにんじんを持っている
 
-   
+    public GameObject carrotPrefab; // にんじんのプレファブ
 
-    private List<GameObject> carrots = new List<GameObject>(); // にんじんのインスタンスを格納するリスト
+    public List<GameObject> carrots = new List<GameObject>(); // にんじんのGameObjectリスト
+
 
     private int nutCount = 0; // プレイヤーが持っている木の実の数
-   
+
+    public List<GameObject> carrotsVisuals = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
     {
-       
+
         currentState = PlayerState.Hand;
-       
+        UpdateCarrotVisibility(); // スタート時ににんじんの可視状態を更新
     }
 
     // Update is called once per frame
@@ -61,26 +63,23 @@ public class PlayerControl : MonoBehaviour
             DropNut();
             ThrowNut();
         }
-      
-        // Tabキーでの状態切り替え
+
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             switch (currentState)
             {
                 case PlayerState.Hand:
                     currentState = PlayerState.Carrot;
-                   
                     break;
                 case PlayerState.Carrot:
                     currentState = (nutCount > 0) ? PlayerState.Nut : PlayerState.Hand;
-                   
                     break;
                 case PlayerState.Nut:
                     currentState = PlayerState.Hand;
-                 
                     break;
             }
             Debug.Log($"Current State: {currentState}");
+            UpdateCarrotVisibility(); // 状態変更時ににんじんの可視状態を更新
         }
         // 柵を開閉する処理
         if (Input.GetKeyDown(KeyCode.F)) // Fキーを開閉のトリガーとする
@@ -139,7 +138,7 @@ public class PlayerControl : MonoBehaviour
         }
         transform.position = position;
     }
-   
+
 
     void ToggleFence()
     {
@@ -187,15 +186,13 @@ public class PlayerControl : MonoBehaviour
             carrotCount--; // にんじんの数を減らす
             Debug.Log("にんじんを1本消費しました。残りのにんじんの数: " + carrotCount);
 
-            // 消費したにんじんを非表示にする（非アクティブ化）
-            GameObject consumedCarrot = carrots[carrotCount];
-            consumedCarrot.SetActive(false);
+            currentState = PlayerState.Hand;
 
+            UpdateCarrotVisibility(); // にんじんを消費するたびに可視状態を更新
+            Debug.Log($"Current State: {currentState}");
             if (carrotCount == 0)
             {
                 Debug.Log("にんじんがもうありません！");
-                // 全てのにんじんを破棄する
-                DestroyAllCarrots();
             }
         }
     }
@@ -205,13 +202,13 @@ public class PlayerControl : MonoBehaviour
     {
         return carrotCount > 0; // にんじんの数が0より大きければ、プレイヤーはにんじんを持っている
     }
-    void DestroyAllCarrots()
+    void UpdateCarrotVisibility()
     {
-        foreach (GameObject carrot in carrots)
+        bool shouldShowCarrots = currentState == PlayerState.Carrot && carrotCount > 0;
+        foreach (var carrot in carrots)
         {
-            Destroy(carrot); // 各にんじんのインスタンスを破棄
+            carrot.SetActive(shouldShowCarrots);
         }
-        carrots.Clear(); // リストをクリア
     }
 }
 
