@@ -21,6 +21,7 @@ public class FoxAI : MonoBehaviour
     // スポーン情報
     private SpawnFox _spawnFox;
     // ターゲットに追いついた後の経過時間
+    private int m_targetGetTime;
 
     // 狐の動く速度
     [SerializeField] Vector2 m_speed;
@@ -32,7 +33,7 @@ public class FoxAI : MonoBehaviour
     private int m_beforTime;
 
     // Start is called before the first frame update
-    public void Start()
+    void Start()
     {
         m_position = transform.position;
         m_targetNuts = false;
@@ -40,6 +41,7 @@ public class FoxAI : MonoBehaviour
         m_targetGet = false;
         m_velosity = m_speed;
         m_beforTime = 10;
+        m_targetGetTime = 0;
         m_time = GameObject.Find("GameTime");
         m_foxTime = m_time.GetComponent<GameTime>();
     }
@@ -50,18 +52,70 @@ public class FoxAI : MonoBehaviour
         // ターゲットにひきつけられているときに実行
         if(m_target != null && m_targetGet == false)
         {
+            // スピードが入っているか
+            if(m_speed.x == 0 && m_speed.y == 0)
+            {
+                m_speed = m_velosity;
+            }
+
             /*　ターゲットを追いかける　*/
             // 現在地から見たターゲットの方向
+            Vector2 direction;
+            direction.x = m_target.position.x - transform.position.x;
+            direction.y = m_target.position.y - transform.position.y;
 
-            // 現在地からターゲットへの最短距離（経路探索？）
+            /*-----------------------------------------------------------------------------
+             *
+             *
+             *          スピードが０になる原因以下のプログラムにあり
+             *
+             *
+             ------------------------------------------------------------------------------*/
+            // 右
+            if (direction.x < 0)
+            {
+                m_speed.x *= m_velosity.x;
+            }
+            // 左
+            else if(direction.x > 0)
+            {
+                m_speed.x *= -m_velosity.x;
+            }
+            // 上
+            if(direction.y < 0)
+            {
+                m_speed.y *= m_velosity.y;
+            }
+            // 下
+            else if (direction.y > 0)
+            {
+                m_speed.y *= -m_velosity.y;
+            }
+
 
             // ターゲットを追う
+            m_speed *= 2;
 
         }
         if(m_target == null)
         {
             m_targetGet = false;
         }
+        // ターゲットを捕まえたときに実行
+        if(m_targetGet == true && m_targetGetTime == 0)
+        {
+            m_targetGetTime = (int)m_foxTime.elapsedTime;
+        }
+        // ３秒たったら動き始める
+        if((int)m_foxTime.elapsedTime - m_targetGetTime == 3)
+        {
+            m_targetGetTime = 0;
+            m_target = null;
+            m_targetNuts = false;
+            m_targetRabbit = false;
+            m_speed = m_velosity;
+        }
+
 
         // 何も追いかけていないとき自由行動
         // 一定時間ごとに判定(3秒)
@@ -82,7 +136,7 @@ public class FoxAI : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // 木の実がコライダー内に入ったら木の実の座標を受取る（ウサギより木の実優先）
-        if (collision.gameObject.CompareTag("Nuts"))
+        if (collision.gameObject.CompareTag("Nut"))
         {
             // 木の実にひきつけられているかどうか
             m_targetNuts = true;
@@ -99,7 +153,7 @@ public class FoxAI : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         // 木の実がコライダー内から出たら木の実の座標を受け取る（ウサギより木の実優先）
-        if (collision.gameObject.CompareTag("Nuts"))
+        if (collision.gameObject.CompareTag("Nut"))
         {
             // 木の実にひきつけられているかどうか
             m_targetNuts = true;
@@ -116,20 +170,30 @@ public class FoxAI : MonoBehaviour
     // ターゲットと接触しているとき
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // 木と接触した場合
+        if(collision.gameObject.CompareTag("Wood"))
+        {
+            WoodMoveFox(collision);
+            return;
+        }
+
         // ターゲットに追いついた
         m_targetGet = true;
-        // 三秒間ターゲットの座標で停止
-
-        // すべて終わったらターゲットをデリート（もしくは）
-        m_target = null; 
-        m_targetNuts = false; 
-        m_targetRabbit = false;
         
     }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        MoveFox();
+    }
+
 
     private void MoveFox()
     {
         int direction = Random.Range(0, 5);
+        // ステージの端近くにいる場合
+        
+
         // スピードをプラスにする
         m_speed = m_velosity;
         switch (direction)
@@ -154,6 +218,54 @@ public class FoxAI : MonoBehaviour
                 m_speed = Vector2.zero;
                 return;
 
+        }
+    }
+
+    private void WoodMoveFox(Collision2D collision)
+    {
+        GameObject Wood = collision.gameObject;
+        Vector2 WoodPos = Wood.transform.position;
+        float lengthx = WoodPos.x - transform.position.x;
+        float lengthy = WoodPos.y - transform.position.y;
+        int _N;
+        if (Mathf.Abs(lengthx) > Mathf.Abs(lengthy))
+        {
+            _N = 1;
+        }
+        else
+        {
+            _N = 0;
+        }
+
+        if (_N == 0)
+        {
+            // 右によける
+            if (WoodPos.x < transform.position.x)
+            {
+                m_speed.x *= 1;
+                m_speed.y = 0;
+            }
+            // 左によける}
+            if (WoodPos.x < transform.position.x)
+            {
+                m_speed.x *= -1;
+                m_speed.y = 0;
+            }
+        }
+        else if (_N == 1)
+        {
+            // 上によける
+            if (WoodPos.y < transform.position.y)
+            {
+                m_speed.y *= 1;
+                m_speed.x = 0;
+            }
+            // 下によける}
+            if (WoodPos.y < transform.position.y)
+            {
+                m_speed.y *= -1;
+                m_speed.x = 0;
+            }
         }
     }
 }
