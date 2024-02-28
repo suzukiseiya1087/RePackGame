@@ -18,6 +18,5 @@ public class GameTime : MonoBehaviour
     {
         // Œo‰ßŽžŠÔ‚ðŠi”[
         elapsedTime = Time.time;
-        Debug.Log(elapsedTime);
     }
 }
