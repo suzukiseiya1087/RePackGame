@@ -16,15 +16,31 @@ public class RabbitAI : MonoBehaviour
     private float m_moveDuration;
     private float m_nextMoveTime = 0f;
     private float m_moveInterval = 4f; // 動作間隔
-    private float m_speed = 2f; // 一定の速度
+    public float m_speed = 0.5f; // 一定の速度
 
     //なつき度のオブジェクト
     [SerializeField] GameObject[] m_natukiObj;
     [SerializeField] Sprite[] m_sprites;
-    private int m_natuki = 0;　
+    public int m_natuki = 0;
 
-     private void Update()
+
+    [SerializeField] private Vector2[] m_firstPos;
+
+    private void Start()
     {
+        transform.position = m_firstPos[Random.Range(0,7)];
+    }
+
+    private void Update()
+    {
+        Debug.Log(m_inCarrot);
+
+        //おびえてるときは何もしない
+        if (m_obieru==true)
+        {
+            return;
+        }
+
         // 4秒おきに動作するようにする
         if (Time.time >= m_nextMoveTime)
         {
@@ -36,25 +52,34 @@ public class RabbitAI : MonoBehaviour
         {
             // 移動中の処理
             float elapsedTime = Time.time - m_moveStartTime;
-            float t = Mathf.Clamp01(elapsedTime / m_moveDuration);
-            transform.position = Vector2.Lerp(transform.position, m_targetPosition, t);
+            float time = Mathf.Clamp01(elapsedTime / m_moveDuration);
+            transform.position = Vector2.Lerp(transform.position, m_targetPosition, time);
 
-            if (t >= 1.0f)
+            if (time >= 1.0f)
             {
                 m_isMoving = false;
             }
         }
 
         Natuki();
-        Debug.Log(m_natuki);
+        //Debug.Log(m_natuki);
 
-        if (Input.GetKeyDown(KeyCode.A))
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    m_natuki++;
+        //}
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    m_natuki--;
+        //}
+
+        if (m_natuki < 0)
         {
-            m_natuki++;
+            m_obieru = true;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (m_natuki >= 0)
         {
-            m_natuki--;
+            m_obieru = false;
         }
 
         if (m_natuki >= 3)
@@ -68,6 +93,10 @@ public class RabbitAI : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// ランダムで移動
+    /// </summary>
+    /// <param name="rand"></param>
     private void MoveRand(int rand)
     {
         if (rand == 0 || m_isMoving || m_inFox || m_inCarrot)
@@ -94,7 +123,9 @@ public class RabbitAI : MonoBehaviour
                 break;
         }
 
-        float distance = Random.Range(1, 4); // 移動距離
+
+        // 移動距離
+        float distance = Random.Range(1, 4); 
         m_targetPosition = (Vector2)transform.position + direction * distance;
 
         // 移動時間を計算する
@@ -104,6 +135,9 @@ public class RabbitAI : MonoBehaviour
         m_isMoving = true;
     }
 
+    /// <summary>
+    /// なつき度ゲージ
+    /// </summary>
     private void Natuki()
     {
         if (m_natuki == 0)
@@ -154,6 +188,53 @@ public class RabbitAI : MonoBehaviour
             m_natukiObj[Mathf.Abs(m_natuki) - 2].GetComponent<SpriteRenderer>().sprite = m_sprites[2];
             m_natukiObj[Mathf.Abs(m_natuki) - 1].GetComponent<SpriteRenderer>().sprite = m_sprites[2];
         }
+
+    }
+
+    /// <summary>
+    /// 諸々が範囲内に入った時
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+
+        //きつねなら
+        if (collision.gameObject.CompareTag("Fox"))
+        {
+            m_inFox = true;
+
+            // アイテムに向かっての方向ベクトルを計算
+            Vector2 direction = (transform.position - collision.transform.position).normalized;
+
+            //近づく速度
+            Vector2 approachVelocity = direction * m_speed;
+
+            // 速度を適用
+            transform.Translate(approachVelocity * Time.deltaTime);
+
+        }
+
+        //にんじんなら
+        if (collision.gameObject.CompareTag("Carrot"))
+        {
+            m_inCarrot = true;
+
+            //きつね側を優先
+            if (m_inFox)
+            {
+                return;
+            }
+
+            // アイテムに向かっての方向ベクトルを計算
+            Vector2 direction = (collision.transform.position - transform.position).normalized;
+
+            //近づく速度
+            Vector2 approachVelocity = direction * m_speed * 0.5f;
+
+            // 速度を適用
+            transform.Translate(approachVelocity * Time.deltaTime);
+        }
+
 
     }
 }
