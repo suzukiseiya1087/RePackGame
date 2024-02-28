@@ -33,6 +33,7 @@ public class SpawnFox : MonoBehaviour
     {
         m_time = GameObject.Find("GameTime");
         m_foxTime = m_time.GetComponent<GameTime>();
+        m_beforTime = 0;
     }
 
     // Update is called once per frame
@@ -53,8 +54,9 @@ public class SpawnFox : MonoBehaviour
 
         // 狐を出現させる
         // Foxのprefabをステージ上に出現させる
-        Instantiate(m_foxPrefab, Pos, m_foxPrefab.transform.rotation);
+        GameObject Fox = Instantiate(m_foxPrefab, Pos, m_foxPrefab.transform.rotation);
         m_foxCount += 1;
+        Fox.name = "Fox" + m_foxCount;
 
         m_beforTime = ElapsedTime;
     }
