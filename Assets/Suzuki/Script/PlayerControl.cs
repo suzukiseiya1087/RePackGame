@@ -12,7 +12,7 @@ public class PlayerControl : MonoBehaviour
     }
     public GameObject fencePrefab; // 柵のプレファブ
     private GameObject currentFence; // 現在の柵のインスタンスを追跡
-    public float fenceToggleDistance = 2f; // 柵を開閉できる距離
+    public float fenceToggleDistance = 1.2f; // 柵を開閉できる距離
     public PlayerState currentState = PlayerState.Hand;
     public float Speed = 3f;
     public GameObject nutPrefab; // 木の実のプレファブ

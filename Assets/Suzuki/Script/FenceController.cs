@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class FenceController : MonoBehaviour
 {
-    public GameObject fencePrefab; // 柵のプレファブをInspectorから設定
-    private GameObject currentFence; // 現在の柵のインスタンスを保持
+    public GameObject fencePrefab; // 柵のプレファブ
+    public GameObject player; // プレイヤーオブジェクトをInspectorから設定
 
-    // 柵の生成位置（例として、このスクリプトをアタッチしたオブジェクトの位置）
-    private Vector3 spawnPosition;
+    private GameObject currentFence; // 現在の柵のインスタンス
+    private Vector3 spawnPosition; // 柵の生成位置
+
+    public float activationDistance = 1.2f; // プレイヤーがこの距離内に入ったらフェンスを開閉
 
     void Start()
     {
@@ -16,17 +18,29 @@ public class FenceController : MonoBehaviour
 
     void Update()
     {
-        // Spaceキーで柵の開閉を制御
-        if (Input.GetKeyDown(KeyCode.Space))
+        // プレイヤーとの距離を計算
+        float distance = Vector3.Distance(player.transform.position, spawnPosition);
+
+        // 距離がactivationDistance以下ならフェンスの開閉を可能にする
+        if (distance <= activationDistance)
         {
-            if (currentFence != null)
+            // Spaceキーで柵の開閉を制御
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                DestroyFence(); // 柵が存在する場合、破棄
+                ToggleFence();
             }
-            else
-            {
-                CreateFence(); // 柵が存在しない場合、生成
-            }
+        }
+    }
+
+    void ToggleFence()
+    {
+        if (currentFence != null)
+        {
+            DestroyFence(); // 柵が存在する場合、破棄
+        }
+        else
+        {
+            CreateFence(); // 柵が存在しない場合、生成
         }
     }
 
