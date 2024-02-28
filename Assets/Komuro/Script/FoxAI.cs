@@ -9,7 +9,7 @@ using UnityEngine;
 public class FoxAI : MonoBehaviour
 {
     // 狐の座標
-    public Vector3 m_foxPos;
+    //public Vector3 m_foxPos;
     // 木の実にひきつけられているか
     private bool m_targetNuts;
     // ウサギにひきつけられているか
@@ -20,6 +20,10 @@ public class FoxAI : MonoBehaviour
     private bool m_targetGet;
     // スポーン情報
     private SpawnFox _spawnFox;
+    // ターゲットに追いついた後の経過時間
+
+    // 狐の動く速度
+    private float m_speed;
 
     // Start is called before the first frame update
     void Start()
@@ -27,16 +31,13 @@ public class FoxAI : MonoBehaviour
         m_targetNuts = false;
         m_targetRabbit = false;
         m_targetGet = false;
-        //// 初期座標設定
-        //m_foxPos = _spawnFox._FoxPos;
-        //this.gameObject.transform.position = m_foxPos;
     }
 
     // Update is called once per frame
     void Update()
     {
         // ターゲットにひきつけられているときに実行
-        if(m_target != null)
+        if(m_target != null && m_targetGet == false)
         {
             /*　ターゲットを追いかける　*/
             // 現在地から見たターゲットの方向
@@ -46,12 +47,15 @@ public class FoxAI : MonoBehaviour
             // ターゲットを追う
 
         }
-        
+        if(m_target == null)
+        {
+            m_targetGet = false;
+        }
 
         // 何も追いかけていないとき自由行動
         // 一定時間ごとに判定
         // 動く方向を決める
-
+        MoveFox();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -91,10 +95,35 @@ public class FoxAI : MonoBehaviour
     // ターゲットと接触しているとき
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // ターゲットに追いついた
+        m_targetGet = true;
         // 三秒間ターゲットの座標で停止
 
         // すべて終わったらターゲットをデリート（もしくは）
-
+        m_target = null; 
+        m_targetNuts = false; 
+        m_targetRabbit = false;
         
+    }
+
+    private void MoveFox()
+    {
+        int direction = Random.Range(0, 4);
+        switch (direction)
+        {
+            case 0:     // 右
+                transform.right *= m_speed;
+                return;
+            case 1:     // 左
+                transform.right *= -m_speed;
+                return;
+            case 2:     // 上
+                transform.forward *= m_speed;
+                return;
+            case 3:     // 下
+                transform.forward *= -m_speed;
+                return;
+
+        }
     }
 }
