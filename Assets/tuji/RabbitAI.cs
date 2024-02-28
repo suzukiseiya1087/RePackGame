@@ -152,7 +152,7 @@ public class RabbitAI : MonoBehaviour
         if (m_natuki == 1)
         {
             m_natukiObj[m_natuki - 1].GetComponent<SpriteRenderer>().sprite = m_sprites[1];
-            m_natukiObj[m_natuki].GetComponent<SpriteRenderer>().sprite = m_sprites[0];
+            m_natukiObj[m_natuki    ].GetComponent<SpriteRenderer>().sprite = m_sprites[0];
             m_natukiObj[m_natuki + 1].GetComponent<SpriteRenderer>().sprite = m_sprites[0];
 
         }

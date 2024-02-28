@@ -18,6 +18,10 @@ public class SceneChanger : MonoBehaviour
     {
         SceneManager.LoadScene("Title");
     }
+    public void ToPlay()
+    {
+        SceneManager.LoadScene("Play");
+    }
     public void ToStageSelect()
     {
         SceneManager.LoadScene("StageSelect");
