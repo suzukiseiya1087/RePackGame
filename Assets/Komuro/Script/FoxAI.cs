@@ -9,7 +9,7 @@ using UnityEngine;
 public class FoxAI : MonoBehaviour
 {
     // 狐の座標
-    //public Vector3 m_foxPos;
+    private Vector2 m_position;
     // 木の実にひきつけられているか
     private bool m_targetNuts;
     // ウサギにひきつけられているか
@@ -23,14 +23,25 @@ public class FoxAI : MonoBehaviour
     // ターゲットに追いついた後の経過時間
 
     // 狐の動く速度
-    private float m_speed;
+    [SerializeField] Vector2 m_speed;
+    private Vector2 m_velosity;
+
+    // 時間
+    private GameObject m_time;
+    private GameTime m_foxTime;
+    private int m_beforTime;
 
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
+        m_position = transform.position;
         m_targetNuts = false;
         m_targetRabbit = false;
         m_targetGet = false;
+        m_velosity = m_speed;
+        m_beforTime = 10;
+        m_time = GameObject.Find("GameTime");
+        m_foxTime = m_time.GetComponent<GameTime>();
     }
 
     // Update is called once per frame
@@ -53,9 +64,19 @@ public class FoxAI : MonoBehaviour
         }
 
         // 何も追いかけていないとき自由行動
-        // 一定時間ごとに判定
-        // 動く方向を決める
-        MoveFox();
+        // 一定時間ごとに判定(3秒)
+        int Time = (int)m_foxTime.elapsedTime;
+        if(Time - m_beforTime == 3)
+        {  
+            // 動く方向を決める
+            MoveFox();
+            m_beforTime = Time;
+        }
+
+        // 狐を動かす
+        m_position += m_speed;
+        transform.position = m_position;
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -108,20 +129,29 @@ public class FoxAI : MonoBehaviour
 
     private void MoveFox()
     {
-        int direction = Random.Range(0, 4);
+        int direction = Random.Range(0, 5);
+        // スピードをプラスにする
+        m_speed = m_velosity;
         switch (direction)
         {
             case 0:     // 右
-                transform.right *= m_speed;
+                m_speed.x *= 1;
+                m_speed.y = 0;
                 return;
             case 1:     // 左
-                transform.right *= -m_speed;
+                m_speed.x *= -1;
+                m_speed.y = 0;
                 return;
             case 2:     // 上
-                transform.forward *= m_speed;
+                m_speed.y *= 1;
+                m_speed.x = 0;
                 return;
             case 3:     // 下
-                transform.forward *= -m_speed;
+                m_speed.y *= -1;
+                m_speed.x = 0;
+                return;
+            case 4:     // その場で停止
+                m_speed = Vector2.zero;
                 return;
 
         }
