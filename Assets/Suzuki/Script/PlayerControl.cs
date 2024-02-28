@@ -19,34 +19,38 @@ public class PlayerControl : MonoBehaviour
     public Transform throwPoint; // 木の実を投げる位置
     public float throwForce = 5f; // 木の実を投げる力
     public float pickupRange = 2f; // 木の実を拾う範囲
-    public bool isHoldingCarrot = true; // 最初はにんじんを持っている状態
-    
-    public int carrots = 0;
+
+    private int carrotCount = 5; // 最初は5本のにんじんを持っている
+
+   
+
+    private List<GameObject> carrots = new List<GameObject>(); // にんじんのインスタンスを格納するリスト
 
     private int nutCount = 0; // プレイヤーが持っている木の実の数
-    public Rabbit rabbit; // うさぎへの参照を追加
    
+
     // Start is called before the first frame update
     void Start()
     {
-        carrots = 5;
-        
+       
+        currentState = PlayerState.Hand;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
         Move();
         // 拾う処理（仮の入力キー：E）
         // 左クリックで木の実を落とす
-       
+
 
         if (Input.GetMouseButton(0))
         {
             // ここに拾う処理を実装
             PickupNut();
-          
+
 
 
         }
@@ -57,20 +61,23 @@ public class PlayerControl : MonoBehaviour
             DropNut();
             ThrowNut();
         }
-        Carrpts();
+      
         // Tabキーでの状態切り替え
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             switch (currentState)
             {
                 case PlayerState.Hand:
-                    currentState = (carrots > 0) ? PlayerState.Carrot : (nutCount > 0 ? PlayerState.Nut : PlayerState.Hand);
+                    currentState = PlayerState.Carrot;
+                   
                     break;
                 case PlayerState.Carrot:
                     currentState = (nutCount > 0) ? PlayerState.Nut : PlayerState.Hand;
+                   
                     break;
                 case PlayerState.Nut:
                     currentState = PlayerState.Hand;
+                 
                     break;
             }
             Debug.Log($"Current State: {currentState}");
@@ -132,43 +139,8 @@ public class PlayerControl : MonoBehaviour
         }
         transform.position = position;
     }
-    // うさぎににんじんを渡すメソッド
-    public void GiveCarrotToRabbit(Rabbit rabbit)
-    {
-        if (carrots > 0)
-        {
-            carrots--; // にんじんを1本減らす
-            //rabbit.EatCarrot(); // うさぎににんじんを食べさせる
-            Debug.Log("Carrots: " + carrots); // 現在のにんじんの数をログに出力
-        }
-        else
-        {
-            Debug.Log("No more carrots to give.");
-        }
-    }
-    void Carrpts()
-    {
-        // 素手とにんじんを持っている状態の切り替え
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            isHoldingCarrot = !isHoldingCarrot; // 状態を切り替える
-            Debug.Log($"Is holding carrot: {isHoldingCarrot}");
-        }
+   
 
-        // "E"キーが押されたときの処理
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            // にんじんを持っているかつにんじんがある場合はうさぎににんじんを渡す
-            if (isHoldingCarrot && carrots > 0)
-            {
-                GiveCarrotToRabbit(rabbit);
-            }
-            else if (!isHoldingCarrot) // にんじんを持っていない場合はうさぎをなでる
-            {
-                //rabbit.PetRabbit();
-            }
-        }
-    }
     void ToggleFence()
     {
         // プレイヤーと柵のプレファブ生成位置との距離を計算
@@ -199,6 +171,49 @@ public class PlayerControl : MonoBehaviour
             Physics2D.IgnoreCollision(playerCollider, nutCollider);
         }
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Rabbit"))
+        {
+            // ウサギとのトリガーイベントを処理
+            ConsumeCarrot();
+        }
+    }
+
+    void ConsumeCarrot()
+    {
+        if (carrotCount > 0)
+        {
+            carrotCount--; // にんじんの数を減らす
+            Debug.Log("にんじんを1本消費しました。残りのにんじんの数: " + carrotCount);
+
+            // 消費したにんじんを非表示にする（非アクティブ化）
+            GameObject consumedCarrot = carrots[carrotCount];
+            consumedCarrot.SetActive(false);
+
+            if (carrotCount == 0)
+            {
+                Debug.Log("にんじんがもうありません！");
+                // 全てのにんじんを破棄する
+                DestroyAllCarrots();
+            }
+        }
+    }
+
+    // プレイヤーがにんじんを持っているかどうかを判定するメソッド
+    public bool IsHoldingCarrot()
+    {
+        return carrotCount > 0; // にんじんの数が0より大きければ、プレイヤーはにんじんを持っている
+    }
+    void DestroyAllCarrots()
+    {
+        foreach (GameObject carrot in carrots)
+        {
+            Destroy(carrot); // 各にんじんのインスタンスを破棄
+        }
+        carrots.Clear(); // リストをクリア
+    }
 }
+
 
 

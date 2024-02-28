@@ -10,6 +10,7 @@ public class FenceController : MonoBehaviour
 
     public float activationDistance = 1.2f; // プレイヤーがこの距離内に入ったらフェンスを開閉
 
+
     void Start()
     {
         spawnPosition = transform.position; // 初期位置を設定

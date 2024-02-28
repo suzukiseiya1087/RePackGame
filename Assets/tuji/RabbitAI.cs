@@ -33,7 +33,7 @@ public class RabbitAI : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(m_inCarrot);
+        //Debug.Log(m_inCarrot);
 
         //‚¨‚Ñ‚¦‚Ä‚é‚Æ‚«‚Í‰½‚à‚µ‚È‚¢
         if (m_obieru==true)
