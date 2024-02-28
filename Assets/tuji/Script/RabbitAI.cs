@@ -225,6 +225,8 @@ public class RabbitAI : MonoBehaviour
         //にんじんなら
         if (collision.gameObject.CompareTag("Carrot"))
         {
+           
+
             m_inCarrot = true;
 
             //きつね側を優先
@@ -241,6 +243,9 @@ public class RabbitAI : MonoBehaviour
 
             // 速度を適用
             transform.Translate(approachVelocity * Time.deltaTime);
+            m_natuki++;
+            // なつき度が上限または下限を超えないように調整
+            m_natuki = Mathf.Clamp(m_natuki, -3, 3);
         }
 
 
