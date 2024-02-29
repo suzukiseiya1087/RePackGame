@@ -14,7 +14,7 @@ public class PlayerControl : MonoBehaviour
     private GameObject currentFence; // 現在の柵のインスタンスを追跡
     public float fenceToggleDistance = 1.2f; // 柵を開閉できる距離
     public PlayerState currentState = PlayerState.Hand;
-    public float Speed = 3f;
+   [SerializeField] public float Speed = 3f;
     public GameObject nutPrefab; // 木の実のプレファブ
     public Transform throwPoint; // 木の実を投げる位置
     public float throwForce = 5f; // 木の実を投げる力
@@ -215,7 +215,7 @@ public class PlayerControl : MonoBehaviour
         if (currentState == PlayerState.Carrot && carrotCount > 0)
         {
             carrotCount--; // にんじんの数を減らす
-            RabbitAI.m_natuki += 1;
+            //RabbitAI.m_natuki += 1;
             Debug.Log("にんじんを1本消費しました。残りのにんじんの数: " + carrotCount);
             
             currentState = PlayerState.Hand;
