@@ -42,7 +42,7 @@ public class FoxAI : MonoBehaviour
         m_velosity = m_speed;
         m_beforTime = 10;
         m_targetGetTime = 0;
-        m_time = GameObject.Find("GameTime");
+        m_time = GameObject.Find("Time");
         m_foxTime = m_time.GetComponent<GameTime>();
     }
 

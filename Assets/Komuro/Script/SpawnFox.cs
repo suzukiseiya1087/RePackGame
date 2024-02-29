@@ -31,7 +31,7 @@ public class SpawnFox : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_time = GameObject.Find("GameTime");
+        m_time = GameObject.Find("Time");
         m_foxTime = m_time.GetComponent<GameTime>();
         m_beforTime = 0;
     }
