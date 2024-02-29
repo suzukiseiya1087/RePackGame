@@ -256,7 +256,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4994764512570563566
@@ -283,7 +283,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 02a6c20598dfdc54da573e8b75cca784, type: 3}
   - {fileID: 21300000, guid: b9ba10056a904db4080c0ff0e1069e9a, type: 3}
   - {fileID: 21300000, guid: 936a2e66d84f43c40af370c06a724f15, type: 3}
-  m_natuki: 0
   m_firstPos:
   - {x: 5, y: 0}
   - {x: 0, y: 5}
@@ -292,6 +291,8 @@ MonoBehaviour:
   - {x: 0, y: 3}
   - {x: 3, y: 0}
   - {x: 3, y: 3}
+  m_bikkuri: {fileID: 4994764512570563567, guid: ba9f4a7d577cc3e4186ce374c24b1c5d, type: 3}
+  m_maxRabbit: []
 --- !u!61 &4994764512570563571
 BoxCollider2D:
   m_ObjectHideFlags: 0
