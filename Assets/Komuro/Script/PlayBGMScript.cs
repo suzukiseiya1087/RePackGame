@@ -19,9 +19,5 @@ public class PlayBGMScript : MonoBehaviour
         {
             m_audioSource.Stop();
         }
-        else
-        {
-            m_audioSource.Play();
-        }
     }
 }
