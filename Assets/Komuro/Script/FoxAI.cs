@@ -173,15 +173,6 @@ public class FoxAI : MonoBehaviour
     // ƒ^[ƒQƒbƒg‚ÆÚG‚µ‚Ä‚¢‚é‚Æ‚«
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        // –Ø‚ÆÚG‚µ‚½ê‡
-        if(!collision.gameObject.CompareTag("Fox") &&
-           !collision.gameObject.CompareTag("Rabbit"))
-        {
-            //WoodMoveFox(collision);
-            m_speed = Vector2.zero;
-            m_onCollider = true;
-            return;
-        }
         // ŒÏ‚ÆÚG‚µ‚½‚Æ‚«
         if(collision.gameObject.CompareTag("Fox"))
         {
