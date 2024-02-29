@@ -22,6 +22,10 @@ public class FoxAI : MonoBehaviour
     private SpawnFox _spawnFox;
     // ターゲットに追いついた後の経過時間
     private int m_targetGetTime;
+    // 狐の向いている方向
+    private Vector2 m_scale;
+    // ステージ内のオブジェクトと当たっているか
+    private bool m_onCollider;
 
     // 狐の動く速度
     [SerializeField] Vector2 m_speed;
@@ -42,6 +46,8 @@ public class FoxAI : MonoBehaviour
         m_velosity = m_speed;
         m_beforTime = 10;
         m_targetGetTime = 0;
+        m_scale = this.transform.localScale;
+        m_onCollider = false;
         m_time = GameObject.Find("Time");
         m_foxTime = m_time.GetComponent<GameTime>();
     }
@@ -122,6 +128,8 @@ public class FoxAI : MonoBehaviour
             m_beforTime = Time;
         }
 
+        FoxTurn();
+
         // 狐を動かす
         m_position += m_speed;
         transform.position = m_position;
@@ -155,7 +163,7 @@ public class FoxAI : MonoBehaviour
             m_target = collision.gameObject.transform;
         }
         // ウサギが近くにいるときウサギの座標を受け取る（障害物をよけて）
-        else if (collision.gameObject.CompareTag("Rabbit") && m_targetNuts == false)
+        else if (collision.gameObject.CompareTag("Rabbit") && m_targetNuts == false && m_onCollider == false)
         {
            // m_targetRabbit = true;
             m_target = collision.gameObject.transform;
@@ -169,7 +177,9 @@ public class FoxAI : MonoBehaviour
         if(!collision.gameObject.CompareTag("Fox") &&
            !collision.gameObject.CompareTag("Rabbit"))
         {
-            WoodMoveFox(collision);
+            //WoodMoveFox(collision);
+            m_speed = Vector2.zero;
+            m_onCollider = true;
             return;
         }
         // 狐と接触したとき
@@ -188,6 +198,7 @@ public class FoxAI : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         MoveFox();
+        m_onCollider = false;
     }
 
 
@@ -270,5 +281,19 @@ public class FoxAI : MonoBehaviour
                 m_speed.x = 0;
             }
         }
+    }
+
+    private void FoxTurn()
+    {
+        // 右に移動しているとき
+        if( m_speed.x > 0)
+        {
+            m_scale.x = -1;
+        }
+        else
+        {
+            m_scale.x = 1;
+        }
+        this.transform.localScale = m_scale;
     }
 }
