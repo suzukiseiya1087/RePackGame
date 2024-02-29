@@ -215,7 +215,7 @@ public class PlayerControl : MonoBehaviour
         if (currentState == PlayerState.Carrot && carrotCount > 0)
         {
             carrotCount--; // ‚É‚ñ‚¶‚ñ‚Ì”‚ğŒ¸‚ç‚·
-            //RabbitAI.m_natuki += 1;
+            RabbitAI.m_natuki += 1;
             Debug.Log("‚É‚ñ‚¶‚ñ‚ğ1–{Á”ï‚µ‚Ü‚µ‚½Bc‚è‚Ì‚É‚ñ‚¶‚ñ‚Ì”: " + carrotCount);
             
             currentState = PlayerState.Hand;
