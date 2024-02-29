@@ -18,10 +18,10 @@ public class TimeUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      m_countMin1 = 7;
-      m_countMin10 = 5;
-      m_countHour1 = 0;
-      m_countHour10 =2;
+      m_countMin1 = 0;
+      m_countMin10 = 3;
+      m_countHour1 = 9;
+      m_countHour10 =1;
 
         //DontDestroyOnLoad(this.gameObject);
     }
