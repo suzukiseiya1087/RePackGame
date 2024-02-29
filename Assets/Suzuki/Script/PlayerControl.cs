@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour
 
     public List<GameObject> carrots = new List<GameObject>(); // にんじんのGameObjectリスト
 
-
+    public CarrotCounter carrotCounter;
     private int nutCount = 0; // プレイヤーが持っている木の実の数
 
     public List<GameObject> carrotsVisuals = new List<GameObject>();
@@ -210,9 +210,9 @@ public class PlayerControl : MonoBehaviour
         {
             carrotCount--; // にんじんの数を減らす
             Debug.Log("にんじんを1本消費しました。残りのにんじんの数: " + carrotCount);
-
+            
             currentState = PlayerState.Hand;
-
+            
             UpdateCarrotVisibility(); // にんじんを消費するたびに可視状態を更新
             Debug.Log($"Current State: {currentState}");
             if (carrotCount == 0)
