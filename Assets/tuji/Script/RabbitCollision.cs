@@ -16,9 +16,13 @@ public class RabbitCollision : MonoBehaviour
             m_rabbitAI.m_inCarrot = false;
 
             //‚È‚Â‚«“x‚ð‚ ‚°‚é
-            m_rabbitAI.m_natuki = 3;
+            m_rabbitAI.m_natuki += 1;
         }
 
-
+        if (collision.gameObject.CompareTag("Fox"))
+        {
+            //‚¨‚Ñ‚¦‚é
+            m_rabbitAI.m_natuki -= 1;
+        }
     }
 }

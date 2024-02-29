@@ -23,7 +23,7 @@ public class RabbitAI : MonoBehaviour
     [SerializeField] Sprite[] m_sprites;
     public int m_natuki = 0;
 
-
+    private int m_rabbitCount = 0;
     [SerializeField] private Vector2[] m_firstPos;
 
     private void Start()
@@ -64,18 +64,6 @@ public class RabbitAI : MonoBehaviour
         //なつき度
         Natuki();
 
-
-        //Debug.Log(m_natuki);
-
-        //if (Input.GetKeyDown(KeyCode.A))
-        //{
-        //    m_natuki++;
-        //}
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    m_natuki--;
-        //}
-
         if (m_natuki < 0)
         {
             m_obieru = true;
@@ -85,15 +73,9 @@ public class RabbitAI : MonoBehaviour
             m_obieru = false;
         }
 
-        if (m_natuki >= 3)
-        {
-            m_natuki = 3;
-        }
+        // なつき度が上限または下限を超えないように調整
+        m_natuki = Mathf.Clamp(m_natuki, -3, 3);
 
-        if (m_natuki <= -3)
-        {
-            m_natuki = -3;
-        }
     }
 
     /// <summary>
@@ -199,17 +181,11 @@ public class RabbitAI : MonoBehaviour
     /// <param name="collision"></param>
     private void OnTriggerStay2D(Collider2D collision)
     {
-
         //きつねなら
         if (collision.gameObject.CompareTag("Fox"))
         {
             m_inFox = true;
 
-            //柵の中にいる場合
-            if (m_inFence)
-            {
-
-            }
 
             // アイテムに向かっての方向ベクトルを計算
             Vector2 direction = (transform.position - collision.transform.position).normalized;
@@ -225,8 +201,6 @@ public class RabbitAI : MonoBehaviour
         //にんじんなら
         if (collision.gameObject.CompareTag("Carrot"))
         {
-           
-
             m_inCarrot = true;
 
             //きつね側を優先
@@ -243,11 +217,17 @@ public class RabbitAI : MonoBehaviour
 
             // 速度を適用
             transform.Translate(approachVelocity * Time.deltaTime);
-            m_natuki++;
-            // なつき度が上限または下限を超えないように調整
-            m_natuki = Mathf.Clamp(m_natuki, -3, 3);
+
+            //m_natuki++;
+
         }
+    }
 
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Fence"))
+        {
+            m_rabbitCount += 1;
+        }
     }
 }
