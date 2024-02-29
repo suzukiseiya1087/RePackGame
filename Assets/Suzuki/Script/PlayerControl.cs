@@ -170,24 +170,10 @@ public class PlayerControl : MonoBehaviour
             Physics2D.IgnoreCollision(playerCollider, nutCollider);
         }
     }
-    //void OnTriggerEnter2D(Collider2D other)
-    //{
-    //    if (other.gameObject.CompareTag("Rabbit")) // ウサギとの衝突をチェック
-    //    {
-    //        if (currentState == PlayerState.Hand) // 素手の状態であるかチェック
-    //        {
-    //            // ここにウサギをなでる処理を実装
-    //            Debug.Log("ウサギをなでました。"); // コンソールにメッセージを表示
-    //        }
-    //    }
-    //        if (other.gameObject.CompareTag("Rabbit"))
-    //    {
-    //        // ウサギとのトリガーイベントを処理
-    //        ConsumeCarrot();
-    //    }
-    //}
+
     void OnTriggerEnter2D(Collider2D other)
     {
+        RabbitCollision rabbitAI = other.GetComponent<RabbitCollision>(); // ウサギのRabbitAIスクリプトを取得
         if (other.gameObject.CompareTag("Rabbit")) // ウサギとの衝突をチェック
         {
             if (currentState == PlayerState.Hand) // 素手の状態であるかチェック
@@ -199,13 +185,32 @@ public class PlayerControl : MonoBehaviour
             {
                 // ウサギとのトリガーイベントを処理
                 ConsumeCarrot();
+                
             }
             // 必要に応じて、他の状態に対する処理をここに追加...
         }
     }
-
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Rabbit")) // ウサギとの衝突をチェック
+    //    {
+    //        if (currentState == PlayerState.Hand) // 素手の状態であるかチェック
+    //        {
+    //            // ウサギをなでる処理
+    //            Debug.Log("ウサギをなでました。"); // コンソールにメッセージを表示
+    //        }
+    //        else if (currentState == PlayerState.Carrot) // にんじんを持っている状態
+    //        {
+    //            // ウサギとのトリガーイベントを処理
+    //            ConsumeCarrot();
+    //        }
+    //        // 必要に応じて、他の状態に対する処理をここに追加...
+    //        //    }
+    //    }
+    //}
     void ConsumeCarrot()
     {
+       
         if (currentState == PlayerState.Carrot && carrotCount > 0)
         {
             carrotCount--; // にんじんの数を減らす

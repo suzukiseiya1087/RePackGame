@@ -6,7 +6,7 @@ public class RabbitCollision : MonoBehaviour
 {
     RabbitAI m_rabbitAI;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Carrot"))
         {
@@ -16,13 +16,14 @@ public class RabbitCollision : MonoBehaviour
             m_rabbitAI.m_inCarrot = false;
 
             //‚È‚Â‚«“x‚ð‚ ‚°‚é
-            m_rabbitAI.m_natuki += 1;
+           RabbitAI.m_natuki += 1;
         }
 
         if (collision.gameObject.CompareTag("Fox"))
         {
             //‚¨‚Ñ‚¦‚é
-            m_rabbitAI.m_natuki -= 1;
+            RabbitAI.m_natuki -= 1;
         }
     }
+   
 }
