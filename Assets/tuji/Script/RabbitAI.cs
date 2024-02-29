@@ -7,7 +7,7 @@ public class RabbitAI : MonoBehaviour
     public bool m_inFox = false;
     public bool m_inCarrot = false;
     public bool m_inFence = false;
-    private bool m_obieru=false;
+    private bool m_obieru = false;
 
     //動いているか？
     private bool m_isMoving = false;
@@ -21,19 +21,25 @@ public class RabbitAI : MonoBehaviour
     //なつき度のオブジェクト
     [SerializeField] GameObject[] m_natukiObj;
     [SerializeField] Sprite[] m_sprites;
-    public int m_natuki = 0;
+    public static int m_natuki = 0;
 
     private int m_rabbitCount = 0;
     [SerializeField] private Vector2[] m_firstPos;
 
+    [SerializeField] private GameObject m_bikkuri;
+
     private void Start()
     {
         transform.position = m_firstPos[Random.Range(0,7)];
+        m_bikkuri.SetActive(false);
+
     }
 
     private void Update()
     {
-        //Debug.Log(m_inCarrot);
+        //Debug.Log(m_inFox);
+        //m_inFox = false;
+        //m_inCarrot = false;
 
         //おびえてるときは何もしない
         if (m_obieru==true)
@@ -75,6 +81,18 @@ public class RabbitAI : MonoBehaviour
 
         // なつき度が上限または下限を超えないように調整
         m_natuki = Mathf.Clamp(m_natuki, -3, 3);
+
+
+        if(m_inFox)
+        {
+            //びっくりさせる
+            m_bikkuri.SetActive(true);
+
+        }
+        else
+        {
+            m_bikkuri.SetActive(false);
+        }
 
     }
 
@@ -186,7 +204,6 @@ public class RabbitAI : MonoBehaviour
         {
             m_inFox = true;
 
-
             // アイテムに向かっての方向ベクトルを計算
             Vector2 direction = (transform.position - collision.transform.position).normalized;
 
@@ -220,6 +237,19 @@ public class RabbitAI : MonoBehaviour
 
             //m_natuki++;
 
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Fox"))
+        {
+            m_inFox = false;
+        }
+
+        if (collision.gameObject.CompareTag("Carrot"))
+        {
+            m_inCarrot = false;
         }
     }
 
