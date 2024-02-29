@@ -19,5 +19,9 @@ public class BGMScrip : MonoBehaviour
         {
             m_audioSource.Stop();
         }
+        else if(m_audioSource.isPlaying == false)
+        {
+            m_audioSource.Play();
+        }
     }
 }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayBGMScript : MonoBehaviour
+public class ResultBGMScript : MonoBehaviour
 {
     AudioSource m_audioSource;
     // Start is called before the first frame update
