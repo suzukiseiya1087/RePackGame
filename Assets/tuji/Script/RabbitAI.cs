@@ -28,6 +28,8 @@ public class RabbitAI : MonoBehaviour
 
     [SerializeField] private GameObject m_bikkuri;
 
+    [SerializeField] private GameObject[] m_maxRabbit;
+
     private void Start()
     {
         transform.position = m_firstPos[Random.Range(0,7)];
@@ -112,11 +114,14 @@ public class RabbitAI : MonoBehaviour
 
         switch (dir)
         {
+
             case 1:
                 direction = Vector2.left;
+                Flip(dir);
                 break;
             case 2:
                 direction = Vector2.right;
+                Flip(dir);
                 break;
             case 3:
                 direction = Vector2.up;
@@ -259,5 +264,26 @@ public class RabbitAI : MonoBehaviour
         {
             m_rabbitCount += 1;
         }
+    }
+
+    // オブジェクトをフリップする関数
+    private void Flip(int dir)
+    {
+        // オブジェクトのスケールを取得
+        Vector2 scale = transform.localScale;
+
+        // X 軸のスケールを反転させる
+        if (scale.x > 0 && dir == 2) 
+        {
+            scale.x *= -1;
+        }
+
+        if(scale.x < 0 && dir == 1)
+        {
+            scale.x *= -1;
+        }
+
+        // 反転後のスケールを設定
+        transform.localScale = scale;
     }
 }
