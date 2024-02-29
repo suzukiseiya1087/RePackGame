@@ -15,7 +15,7 @@ public class RabbitCollision : MonoBehaviour
             //ウサギ側のbool戻す
             m_rabbitAI.m_inCarrot = false;
 
-            //なつき度をあげる
+           //なつき度をあげる
            RabbitAI.m_natuki += 1;
         }
 

@@ -23,7 +23,8 @@ public class RabbitAI : MonoBehaviour
     [SerializeField] Sprite[] m_sprites;
     public static int m_natuki = 0;
 
-    private int m_rabbitCount = 0;
+    public static int m_rabbitCount = 0;
+
     [SerializeField] private GameObject[] m_firstPos;
 
     [SerializeField] private GameObject m_bikkuri;
@@ -34,6 +35,8 @@ public class RabbitAI : MonoBehaviour
     {
         transform.position = m_firstPos[Random.Range(0,m_maxRabbit.Length)].transform.position;
         m_bikkuri.SetActive(false);
+
+        m_rabbitCount = m_maxRabbit.Length;
 
     }
 
@@ -50,7 +53,7 @@ public class RabbitAI : MonoBehaviour
         }
 
         // 4秒おきに動作するようにする
-        if (Time.time >= m_nextMoveTime)
+        if (Time.time >= m_nextMoveTime && !m_obieru) 
         {
             MoveRand(Random.Range(0, 2)); // ランダムな値を渡す
             m_nextMoveTime = Time.time + m_moveInterval; // 次の動作時間を更新

@@ -20,7 +20,7 @@ public class SceneChanger : MonoBehaviour
     }
     public void ToPlay()
     {
-        SceneManager.LoadScene("Play");
+        SceneManager.LoadScene("Nagadomo");
     }
     public void ToStageSelect()
     {
