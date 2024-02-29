@@ -12,7 +12,7 @@ public class rabbitCount : MonoBehaviour
 
     private void Start()
     {
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
     // Update is called once per frame
     void Update()
