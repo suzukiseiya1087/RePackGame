@@ -1,10 +1,7 @@
 using UnityEngine;
 
-public class UIMove : MonoBehaviour
+public class UIOptionMove : MonoBehaviour
 {
-    private float m_time;
-    private float m_interval = 2.0f;
-
     [SerializeField] CanvasGroup m_canvasGroup; 
 
     // Start is called before the first frame update
@@ -18,25 +15,16 @@ public class UIMove : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Open()
     {
-        m_time++;
+        //hyouji
+        m_canvasGroup.alpha = 1.0f;
 
-        // UIをアクティブにする
-        if (m_time / 600 >= m_interval)
-        {
-            //hyouji
-            m_canvasGroup.alpha = 1.0f;
-        }
+    }
+    public void Close()
+    {
+        //hyouji
+        m_canvasGroup.alpha = 0.0f;
 
-        // キー入力があったら
-        if (Input.anyKeyDown)
-        {
-            // 時間をリセット
-            m_time = 0;
-
-            // 透明
-            m_canvasGroup.alpha = 0.0f;
-        }
     }
 }
