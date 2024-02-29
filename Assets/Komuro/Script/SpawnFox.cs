@@ -65,7 +65,7 @@ public class SpawnFox : MonoBehaviour
     private Vector3 FoxTransForm()
     {
         // èoåªç¿ïW
-        m_spawnRange = _FoxPos[Random.Range(0,6)];
+        m_spawnRange = _FoxPos[Random.Range(0, _FoxPos.Length)];
 
         return m_spawnRange;
     }
