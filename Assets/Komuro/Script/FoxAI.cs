@@ -94,7 +94,7 @@ public class FoxAI : MonoBehaviour
 
 
             // ターゲットを追う
-            m_speed *= 3;
+            m_speed *= 2;
 
         }
         if(m_target == null)
