@@ -74,22 +74,22 @@ public class FoxAI : MonoBehaviour
             // âE
             if (direction.x < 0)
             {
-                m_speed.x *= m_velosity.x;
+                m_speed.x = m_velosity.x;
             }
             // ç∂
             else if(direction.x > 0)
             {
-                m_speed.x *= -m_velosity.x;
+                m_speed.x = -m_velosity.x;
             }
             // è„
             if(direction.y < 0)
             {
-                m_speed.y *= m_velosity.y;
+                m_speed.y = m_velosity.y;
             }
             // â∫
             else if (direction.y > 0)
             {
-                m_speed.y *= -m_velosity.y;
+                m_speed.y = -m_velosity.y;
             }
 
 
