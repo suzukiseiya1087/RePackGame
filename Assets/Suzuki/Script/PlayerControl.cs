@@ -31,6 +31,7 @@ public class PlayerControl : MonoBehaviour
 
     public List<GameObject> carrotsVisuals = new List<GameObject>();
 
+    RabbitAI rabbitAI;
     // Start is called before the first frame update
     void Start()
     {
@@ -173,7 +174,7 @@ public class PlayerControl : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        RabbitCollision rabbitAI = other.GetComponent<RabbitCollision>(); // ウサギのRabbitAIスクリプトを取得
+        
         if (other.gameObject.CompareTag("Rabbit")) // ウサギとの衝突をチェック
         {
             if (currentState == PlayerState.Hand) // 素手の状態であるかチェック
@@ -214,6 +215,7 @@ public class PlayerControl : MonoBehaviour
         if (currentState == PlayerState.Carrot && carrotCount > 0)
         {
             carrotCount--; // にんじんの数を減らす
+            RabbitAI.m_natuki += 1;
             Debug.Log("にんじんを1本消費しました。残りのにんじんの数: " + carrotCount);
             
             currentState = PlayerState.Hand;
