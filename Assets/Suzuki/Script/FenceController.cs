@@ -26,7 +26,7 @@ public class FenceController : MonoBehaviour
         if (distance <= activationDistance)
         {
             // SpaceƒL[‚Åò‚ÌŠJ•Â‚ð§Œä
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0))
             {
                 ToggleFence();
             }

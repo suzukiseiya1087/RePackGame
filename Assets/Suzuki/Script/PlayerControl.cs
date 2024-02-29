@@ -83,7 +83,7 @@ public class PlayerControl : MonoBehaviour
             UpdateCarrotVisibility(); // 状態変更時ににんじんの可視状態を更新
         }
         // 柵を開閉する処理
-        if (Input.GetKeyDown(KeyCode.F)) // Fキーを開閉のトリガーとする
+        if (Input.GetMouseButtonDown(0)) // Fキーを開閉のトリガーとする
         {
             ToggleFence();
         }
