@@ -19,9 +19,9 @@ public class TimeUI : MonoBehaviour
     void Start()
     {
       m_countMin1 = 0;
-      m_countMin10 = 5;
-      m_countHour1 = 0;
-      m_countHour10 = 2;
+      m_countMin10 = 0;
+      m_countHour1 = 8;
+      m_countHour10 = 1;
 
         //DontDestroyOnLoad(this.gameObject);
     }
