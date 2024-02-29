@@ -13,7 +13,7 @@ public class FoxAI : MonoBehaviour
     // 木の実にひきつけられているか
     private bool m_targetNuts;
     // ウサギにひきつけられているか
-    private bool m_targetRabbit;
+    //private bool m_targetRabbit;
     // 追いかけているものの座標
     private Transform m_target;
     // ターゲットに追いついたかどうか
@@ -37,7 +37,7 @@ public class FoxAI : MonoBehaviour
     {
         m_position = transform.position;
         m_targetNuts = false;
-        m_targetRabbit = false;
+        //m_targetRabbit = false;
         m_targetGet = false;
         m_velosity = m_speed;
         m_beforTime = 10;
@@ -64,32 +64,26 @@ public class FoxAI : MonoBehaviour
             direction.x = m_target.position.x - transform.position.x;
             direction.y = m_target.position.y - transform.position.y;
 
-            /*-----------------------------------------------------------------------------
-             *
-             *
-             *          スピードが０になる原因以下のプログラムにあり
-             *
-             *
-             ------------------------------------------------------------------------------*/
+            
             // 右
             if (direction.x < 0)
             {
-                m_speed.x = m_velosity.x;
+                m_speed.x = -m_velosity.x;
             }
             // 左
             else if(direction.x > 0)
             {
-                m_speed.x = -m_velosity.x;
+                m_speed.x = m_velosity.x;
             }
             // 上
             if(direction.y < 0)
             {
-                m_speed.y = m_velosity.y;
+                m_speed.y = -m_velosity.y;
             }
             // 下
             else if (direction.y > 0)
             {
-                m_speed.y = -m_velosity.y;
+                m_speed.y = m_velosity.y;
             }
 
 
@@ -112,8 +106,9 @@ public class FoxAI : MonoBehaviour
             m_targetGetTime = 0;
             m_target = null;
             m_targetNuts = false;
-            m_targetRabbit = false;
+            //m_targetRabbit = false;
             m_speed = m_velosity;
+            // ラビットまたは木の実を消す？
         }
 
 
@@ -145,7 +140,7 @@ public class FoxAI : MonoBehaviour
         // ウサギが近くにいるときウサギの座標を受取る（障害物をよけて）
         else if (collision.gameObject.CompareTag("Rabbit") && m_targetNuts == false)
         {
-            m_targetRabbit = true;
+            //m_targetRabbit = true;
             m_target = collision.gameObject.transform;
         }
     }
@@ -162,7 +157,7 @@ public class FoxAI : MonoBehaviour
         // ウサギが近くにいるときウサギの座標を受け取る（障害物をよけて）
         else if (collision.gameObject.CompareTag("Rabbit") && m_targetNuts == false)
         {
-            m_targetRabbit = true;
+           // m_targetRabbit = true;
             m_target = collision.gameObject.transform;
         }
     }
@@ -179,6 +174,7 @@ public class FoxAI : MonoBehaviour
 
         // ターゲットに追いついた
         m_targetGet = true;
+        m_speed = Vector2.zero;
         
     }
 
