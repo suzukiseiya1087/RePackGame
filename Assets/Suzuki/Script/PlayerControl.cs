@@ -30,8 +30,7 @@ public class PlayerControl : MonoBehaviour
     private int nutCount = 0; // プレイヤーが持っている木の実の数
 
     public List<GameObject> carrotsVisuals = new List<GameObject>();
-
-    public AudioSource eatSound; // Inspectorから設定するための公開変数
+  
     RabbitAI rabbitAI;
     // Start is called before the first frame update
     void Start()
@@ -222,7 +221,6 @@ public class PlayerControl : MonoBehaviour
             currentState = PlayerState.Hand;
             
             UpdateCarrotVisibility(); // にんじんを消費するたびに可視状態を更新
-            eatSound.Play(); // にんじんを食べる音を再生
             Debug.Log($"Current State: {currentState}");
             if (carrotCount == 0)
             {
