@@ -251,9 +251,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b19f45ae59e5314eb05f5ae6e6f9f77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxFoxCount: 5
-  foxSpawnTime: 10
-  StartFoxSpawnTime: 5
+  MaxFoxCount: 2
+  foxSpawnTime: 1
+  StartFoxSpawnTime: 1
   _FoxPos:
   - {x: 0, y: 0, z: 0}
   - {x: 5, y: 0, z: 0}
