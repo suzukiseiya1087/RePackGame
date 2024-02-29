@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 87326912}
   - component: {fileID: 87326911}
   m_Layer: 5
-  m_Name: Text (TMP) (2)
+  m_Name: Fox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -579,7 +579,7 @@ GameObject:
   - component: {fileID: 617548482}
   - component: {fileID: 617548481}
   m_Layer: 5
-  m_Name: Text (TMP) (4)
+  m_Name: time
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -714,7 +714,7 @@ GameObject:
   - component: {fileID: 689322729}
   - component: {fileID: 689322728}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: rabbit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1141,6 +1141,53 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1040414739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1040414741}
+  - component: {fileID: 1040414740}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1040414740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040414739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11ae7f361a251eb48a96ab8869d04d59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  time: {fileID: 617548481}
+  rabbit: {fileID: 689322728}
+  fox: {fileID: 87326911}
+--- !u!4 &1040414741
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1040414739}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 700.499, y: 357.0243, z: -0.8884188}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1810427097
 GameObject:
   m_ObjectHideFlags: 0
