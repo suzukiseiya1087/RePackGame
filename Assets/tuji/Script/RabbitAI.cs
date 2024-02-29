@@ -24,7 +24,7 @@ public class RabbitAI : MonoBehaviour
     public static int m_natuki = 0;
 
     private int m_rabbitCount = 0;
-    [SerializeField] private Vector2[] m_firstPos;
+    [SerializeField] private GameObject[] m_firstPos;
 
     [SerializeField] private GameObject m_bikkuri;
 
@@ -32,7 +32,7 @@ public class RabbitAI : MonoBehaviour
 
     private void Start()
     {
-        transform.position = m_firstPos[Random.Range(0,7)];
+        transform.position = m_firstPos[Random.Range(0,m_maxRabbit.Length)].transform.position;
         m_bikkuri.SetActive(false);
 
     }
