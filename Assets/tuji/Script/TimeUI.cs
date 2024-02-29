@@ -9,19 +9,19 @@ public class TimeUI : MonoBehaviour
     private float m_nextTime = 0.0f;
     private float m_interval = 1.0f;
 
-    public static int m_countMin1 = 0;
-    public static int m_countMin10 = 0;
-    public static int m_countHour1 = 8;
-    public static int m_countHour10 = 1;
+    public static int m_countMin1 = 7;
+    public static int m_countMin10 = 5;
+    public static int m_countHour1 = 0;
+    public static int m_countHour10 = 2;
 
     [SerializeField] GameObject m_timeUI;
     // Start is called before the first frame update
     void Start()
     {
-      m_countMin1 = 0;
-      m_countMin10 = 0;
-      m_countHour1 = 8;
-      m_countHour10 = 1;
+      m_countMin1 = 7;
+      m_countMin10 = 5;
+      m_countHour1 = 0;
+      m_countHour10 =2;
 
         //DontDestroyOnLoad(this.gameObject);
     }
