@@ -10,9 +10,9 @@ public class TimeUI : MonoBehaviour
     private float m_interval = 1.0f;
 
     public static int m_countMin1 = 0;
-    public static int m_countMin10 = 0;
-    public static int m_countHour1 = 8;
-    public static int m_countHour10 = 1;
+    public static int m_countMin10 = 5;
+    public static int m_countHour1 = 0;
+    public static int m_countHour10 = 2;
 
     [SerializeField] GameObject m_timeUI;
     // Start is called before the first frame update

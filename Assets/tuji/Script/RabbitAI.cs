@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class RabbitAI : MonoBehaviour
 {
+
+    private rabbitCount rabbitCount;
+
     public bool m_inFox = false;
     public bool m_inCarrot = false;
     public bool m_inFence = false;
@@ -29,20 +32,19 @@ public class RabbitAI : MonoBehaviour
 
     [SerializeField] private GameObject m_bikkuri;
 
-    [SerializeField] private GameObject[] m_maxRabbit;
 
     private void Start()
     {
-        transform.position = m_firstPos[Random.Range(0,m_maxRabbit.Length)].transform.position;
+        transform.position = m_firstPos[Random.Range(0,rabbitCount.m_maxRabbit.Length)].transform.position;
         m_bikkuri.SetActive(false);
 
-        m_rabbitCount = m_maxRabbit.Length;
+        m_rabbitCount = rabbitCount.m_maxRabbit.Length;
 
     }
 
     private void Update()
     {
-        //Debug.Log(m_inFox);
+        Debug.Log(m_rabbitCount);
         //m_inFox = false;
         //m_inCarrot = false;
 

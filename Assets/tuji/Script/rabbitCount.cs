@@ -8,6 +8,8 @@ public class rabbitCount : MonoBehaviour
     RabbitAI rabbitAI;
     [SerializeField] TextMeshProUGUI m_countUI;
 
+    public GameObject[] m_maxRabbit;
+
     private void Start()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -15,6 +17,7 @@ public class rabbitCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_countUI.text = "Å~" + RabbitAI.m_rabbitCount;
+        int a = m_maxRabbit.Length - ((int)RabbitAI.m_rabbitCount);
+        m_countUI.text = "Å~" + a;
     }
 }
