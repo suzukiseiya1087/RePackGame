@@ -20,7 +20,7 @@ public class PlayerControl : MonoBehaviour
     public float throwForce = 5f; // 木の実を投げる力
     public float pickupRange = 2f; // 木の実を拾う範囲
 
-   [SerializeField] private int carrotCount = 5; // 最初は5本のにんじんを持っている
+   [SerializeField] public static int carrotCount = 5; // 最初は5本のにんじんを持っている
 
     public GameObject carrotPrefab; // にんじんのプレファブ
 
