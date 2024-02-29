@@ -268,6 +268,7 @@ GameObject:
   - component: {fileID: 809609928232879039}
   - component: {fileID: 809609928232879036}
   - component: {fileID: 5413960088085175652}
+  - component: {fileID: -3644425127474942341}
   m_Layer: 0
   m_Name: Rabbit 1
   m_TagString: Untagged
@@ -435,7 +436,7 @@ Tilemap:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8176575702879525725}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Tiles: {}
   m_AnimatedTiles: {}
   m_TileAssetArray: []
@@ -473,7 +474,7 @@ TilemapCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8176575702879525725}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -506,6 +507,22 @@ CompositeCollider2D:
     m_Paths: []
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!58 &-3644425127474942341
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8176575702879525725}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.3
 --- !u!1 &8176575703373524533
 GameObject:
   m_ObjectHideFlags: 0
