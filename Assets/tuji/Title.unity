@@ -1354,6 +1354,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rabbit
       objectReference: {fileID: 0}
+    - target: {fileID: 4994764512570563567, guid: ba9f4a7d577cc3e4186ce374c24b1c5d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4994764512570563568, guid: ba9f4a7d577cc3e4186ce374c24b1c5d, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -3808,8 +3812,8 @@ Tilemap:
   - first: {x: -6, y: 4, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileIndex: 4
+      m_TileSpriteIndex: 4
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -4169,24 +4173,24 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 64
+  - m_RefCount: 63
     m_Data: {fileID: 11400000, guid: 5acb9357dd3a42e4fb8d4ad00e8f3ee9, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 173
+  - m_RefCount: 174
     m_Data: {fileID: 11400000, guid: 96e3f0a0ffb8de747a3a12b449c2ea4f, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 64
+  - m_RefCount: 63
     m_Data: {fileID: -366557892, guid: a7a5805305bbc464fa47e2ec4a6e1007, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 173
+  - m_RefCount: 174
     m_Data: {fileID: -1205644797, guid: a7a5805305bbc464fa47e2ec4a6e1007, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 237
