@@ -8,7 +8,7 @@ public class rabbitCount : MonoBehaviour
     RabbitAI rabbitAI;
     [SerializeField] TextMeshProUGUI m_countUI;
 
-    public GameObject[] m_maxRabbit;
+    //public GameObject[] m_maxRabbit;
 
     private void Start()
     {
