@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BGMScrip : MonoBehaviour
+public class PlayBGMScript : MonoBehaviour
 {
     AudioSource m_audioSource;
     // Start is called before the first frame update
@@ -15,11 +15,11 @@ public class BGMScrip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(SceneManager.GetActiveScene().name != "Title")
+        if (SceneManager.GetActiveScene().name != "Nagadomo")
         {
             m_audioSource.Stop();
         }
-        else if(m_audioSource.isPlaying == false)
+        else if (m_audioSource.isPlaying == false)
         {
             m_audioSource.Play();
         }
