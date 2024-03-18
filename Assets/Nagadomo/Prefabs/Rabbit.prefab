@@ -95,7 +95,6 @@ GameObject:
   - component: {fileID: 806855157247990446}
   - component: {fileID: 806855157247990444}
   - component: {fileID: 806855157247990445}
-  - component: {fileID: 3560603747899563415}
   m_Layer: 0
   m_Name: Collider
   m_TagString: Rabbit
@@ -156,22 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9acc54433daf774eb88a5b5e4ed995b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!58 &3560603747899563415
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 806855157247990447}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.3
+  rabbit: {fileID: 806855157395709049}
 --- !u!1 &806855157395709049
 GameObject:
   m_ObjectHideFlags: 0

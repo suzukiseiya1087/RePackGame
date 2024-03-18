@@ -263,13 +263,6 @@ public class RabbitAI : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Fence"))
-        {
-            m_rabbitCount += 1;
-        }
-    }
 
     // オブジェクトをフリップする関数
     private void Flip(int dir)
@@ -290,5 +283,10 @@ public class RabbitAI : MonoBehaviour
 
         // 反転後のスケールを設定
         transform.localScale = scale;
+    }
+
+    public void Destroys()
+    {
+        Destroy(gameObject);
     }
 }

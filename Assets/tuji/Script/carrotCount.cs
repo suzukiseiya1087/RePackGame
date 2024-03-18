@@ -15,6 +15,6 @@ public class carrotCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        m_countUI.text = "Å~" + PlayerControl.carrotCount;
+        m_countUI.text = "Å~" + (int)PlayerControl.carrotCount;
     }
 }

@@ -6,6 +6,8 @@ public class RabbitCollision : MonoBehaviour
 {
     RabbitAI m_rabbitAI;
 
+    [SerializeField] GameObject rabbit;
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Carrot"))
@@ -15,7 +17,8 @@ public class RabbitCollision : MonoBehaviour
             //ウサギ側のbool戻す
             m_rabbitAI.m_inCarrot = false;
 
-           //なつき度をあげる
+           //「一番近いうさぎの」なつき度をあげる
+           
            RabbitAI.m_natuki += 1;
         }
 
@@ -25,5 +28,16 @@ public class RabbitCollision : MonoBehaviour
             RabbitAI.m_natuki -= 1;
         }
     }
-   
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Fence"))
+        {
+            Debug.Log("!!!");
+            RabbitAI.m_rabbitCount += 1;
+            //Destroyする
+            Destroy(rabbit);
+        }
+    }
+
 }

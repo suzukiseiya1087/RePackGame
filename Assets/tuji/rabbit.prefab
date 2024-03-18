@@ -271,7 +271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4994764512570563568
 Transform:
   m_ObjectHideFlags: 0
@@ -332,7 +332,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: ef4b6eefe7fa57049acb3e2ba01ba46e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -370,14 +370,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 936a2e66d84f43c40af370c06a724f15, type: 3}
   m_firstPos:
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   m_bikkuri: {fileID: 314816647}
-  m_maxRabbit: []
 --- !u!61 &4994764512570563571
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -496,6 +489,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9acc54433daf774eb88a5b5e4ed995b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rabbit: {fileID: 4994764512570563567}
 --- !u!1 &4994764512963636871
 GameObject:
   m_ObjectHideFlags: 0

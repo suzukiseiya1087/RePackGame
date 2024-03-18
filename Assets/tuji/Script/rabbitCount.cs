@@ -17,7 +17,7 @@ public class rabbitCount : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int a = m_maxRabbit.Length - ((int)RabbitAI.m_rabbitCount);
+        int a = (int)RabbitAI.m_rabbitCount;
         m_countUI.text = "Å~" + a;
     }
 }
