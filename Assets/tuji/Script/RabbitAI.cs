@@ -38,7 +38,7 @@ public class RabbitAI : MonoBehaviour
         transform.position = m_firstPos[Random.Range(0,rabbitCount.m_maxRabbit.Length)].transform.position;
         m_bikkuri.SetActive(false);
 
-        m_rabbitCount = rabbitCount.m_maxRabbit.Length;
+       // m_rabbitCount = rabbitCount.m_maxRabbit.Length;
 
     }
 
