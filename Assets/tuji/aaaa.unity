@@ -454,5 +454,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 2969024913752270608, guid: 9777d5d6461449341ab305938b4331f8, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9777d5d6461449341ab305938b4331f8, type: 3}
+--- !u!1 &2969024914090138494 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2969024913752270614, guid: 9777d5d6461449341ab305938b4331f8, type: 3}
+  m_PrefabInstance: {fileID: 2969024914090138493}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &2969024914090138495 stripped
+CanvasGroup:
+  m_CorrespondingSourceObject: {fileID: 2969024913752270611, guid: 9777d5d6461449341ab305938b4331f8, type: 3}
+  m_PrefabInstance: {fileID: 2969024914090138493}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2969024914090138496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2969024914090138494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d96a491c6e57dff4c9c8c9f9f3ae2641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_canvasGroup: {fileID: 2969024914090138495}

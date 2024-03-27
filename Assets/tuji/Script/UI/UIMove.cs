@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UIOptionMove : MonoBehaviour
+public class UIMove : MonoBehaviour
 {
     [SerializeField] CanvasGroup m_canvasGroup; 
 

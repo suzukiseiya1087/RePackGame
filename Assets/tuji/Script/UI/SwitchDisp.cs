@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class UIMove : MonoBehaviour
+public class SwitchDisp : MonoBehaviour
 {
     private float m_time;
     private float m_interval = 2.0f;

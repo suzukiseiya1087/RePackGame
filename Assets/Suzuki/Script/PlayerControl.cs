@@ -32,6 +32,7 @@ public class PlayerControl : MonoBehaviour
     public List<GameObject> carrotsVisuals = new List<GameObject>();
   
     RabbitAI rabbitAI;
+    StartCountDown StartCountDown;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,11 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (StartCountDown.m_moveFlag == false)
+        {
+            return;
+        }
 
         Move();
         // 拾う処理（仮の入力キー：E）
