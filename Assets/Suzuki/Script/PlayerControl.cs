@@ -36,7 +36,8 @@ public class PlayerControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCountDown = FindObjectOfType<StartCountDown>();
+        rabbitAI = FindObjectOfType<RabbitAI>();
         currentState = PlayerState.Hand;
         UpdateCarrotVisibility(); // スタート時ににんじんの可視状態を更新
     }
@@ -44,7 +45,6 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (StartCountDown.m_moveFlag == false)
         {
             return;
@@ -221,7 +221,7 @@ public class PlayerControl : MonoBehaviour
         if (currentState == PlayerState.Carrot && carrotCount > 0)
         {
             carrotCount--; // にんじんの数を減らす
-            RabbitAI.m_natuki += 1;
+            rabbitAI.m_natuki += 1;
             Debug.Log("にんじんを1本消費しました。残りのにんじんの数: " + carrotCount);
             
             currentState = PlayerState.Hand;

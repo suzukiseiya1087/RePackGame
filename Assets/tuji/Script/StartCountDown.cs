@@ -8,12 +8,12 @@ public class StartCountDown : MonoBehaviour
     private float m_time = 4.0f;
 
     //“®‚¢‚Ä‚æ‚¢‚©‚Ç‚¤‚©
-    public bool m_moveFlag = false;
+    public bool m_moveFlag { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        m_moveFlag = false;
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class StartCountDown : MonoBehaviour
 
         if(m_time < 0)
         {
-            m_moveFlag=true;
+            m_moveFlag = true;
 
            //Destroy(gameObject);
            gameObject.SetActive(false);

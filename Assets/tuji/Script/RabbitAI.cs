@@ -24,7 +24,7 @@ public class RabbitAI : MonoBehaviour
     //なつき度のオブジェクト
     [SerializeField] GameObject[] m_natukiObj;
     [SerializeField] Sprite[] m_sprites;
-    public static int m_natuki = 0;
+    public  int m_natuki = 0;
 
     public static int m_rabbitCount = 0;
 
