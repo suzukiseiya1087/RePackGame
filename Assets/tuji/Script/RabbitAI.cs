@@ -44,7 +44,7 @@ public class RabbitAI : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(m_rabbitCount);
+        //Debug.Log(m_rabbitCount);
         //m_inFox = false;
         //m_inCarrot = false;
 
@@ -288,5 +288,12 @@ public class RabbitAI : MonoBehaviour
     public void Destroys()
     {
         Destroy(gameObject);
+    }
+
+    // なつき度を増加させるメソッド
+    public void IncreaseNatuki()
+    {
+        m_natuki++;
+        Debug.Log("なついた！" + m_natuki);
     }
 }

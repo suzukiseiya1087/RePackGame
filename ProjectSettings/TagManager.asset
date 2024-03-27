@@ -9,6 +9,7 @@ TagManager:
   - Rabbit
   - Fox
   - Fence
+  - RabbitCollider
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
+using static PlayerControl;
 
 public class RabbitCollision : MonoBehaviour
 {
@@ -8,10 +10,19 @@ public class RabbitCollision : MonoBehaviour
 
     [SerializeField] GameObject rabbit;
 
+    private void Start()
+    {
+        //m_rabbitAI = FindObjectOfType<RabbitAI>();
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("!!!!");
+
         if (collision.gameObject.CompareTag("Carrot"))
         {
+           //if()
+
             //にんじん側を消す
 
             //ウサギ側のbool戻す
@@ -23,13 +34,19 @@ public class RabbitCollision : MonoBehaviour
 
             if (nearestRabbit != null)
             {
+
                 // 一番近いウサギのRabbitAIコンポーネントを取得
                 RabbitAI nearestRabbitAI = nearestRabbit.GetComponent<RabbitAI>();
 
                 if (nearestRabbitAI != null)
                 {
                     // 一番近いウサギのなつき度を上げる
-                    nearestRabbitAI.m_natuki += 1;
+                    nearestRabbitAI.IncreaseNatuki();
+                }
+                else
+                {
+                    // nearestRabbit が null の場合の処理
+                    Debug.Log("ラビットなんてねえよ");
                 }
             }
 
@@ -46,7 +63,7 @@ public class RabbitCollision : MonoBehaviour
     {
         if (collision.CompareTag("Fence"))
         {
-            Debug.Log("!!!");
+            //Debug.Log("!!!");
             RabbitAI.m_rabbitCount += 1;
             //Destroyする
             Destroy(rabbit);
@@ -63,6 +80,7 @@ public class RabbitCollision : MonoBehaviour
         foreach (GameObject rabbit in rabbits)
         {
             float distance = Vector3.Distance(rabbit.transform.position, carrotPosition);
+            
             if (distance < minDistance)
             {
                 minDistance = distance;
