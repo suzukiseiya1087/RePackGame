@@ -19,7 +19,7 @@ public class RabbitAI : MonoBehaviour
     private float m_moveDuration;
     private float m_nextMoveTime = 0f;
     private float m_moveInterval = 4f; // 動作間隔
-    public float m_speed = 0.5f; // 一定の速度
+    public float m_speed = 0.05f; // 一定の速度
 
     //なつき度のオブジェクト
     [SerializeField] GameObject[] m_natukiObj;
@@ -90,6 +90,7 @@ public class RabbitAI : MonoBehaviour
         m_natuki = Mathf.Clamp(m_natuki, -3, 3);
 
 
+        //aアルファ値
         if(m_inFox)
         {
             //びっくりさせる
@@ -124,20 +125,23 @@ public class RabbitAI : MonoBehaviour
                 direction = Vector2.left;
                 Flip(dir);
                 break;
+
             case 2:
                 direction = Vector2.right;
                 Flip(dir);
                 break;
+
             case 3:
                 direction = Vector2.up;
                 break;
+
             case 4:
                 direction = Vector2.down;
                 break;
         }
 
         // 移動距離
-        float distance = Random.Range(1, 4); 
+        float distance = Random.Range(1, 4);
         m_targetPosition = (Vector2)transform.position + direction * distance;
 
         // 移動時間を計算する
@@ -240,7 +244,7 @@ public class RabbitAI : MonoBehaviour
             Vector2 direction = (collision.transform.position - transform.position).normalized;
 
             //近づく速度
-            Vector2 approachVelocity = direction * m_speed * 0.5f;
+            Vector2 approachVelocity = direction * m_speed ;
 
             // 速度を適用
             transform.Translate(approachVelocity * Time.deltaTime);
