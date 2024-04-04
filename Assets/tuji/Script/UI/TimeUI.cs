@@ -22,7 +22,7 @@ public class TimeUI : MonoBehaviour
         m_countHour10 = 1;
         m_countHour1  = 7;
         m_countMin10  = 5;
-        m_countMin1   = 7;
+        m_countMin1   = 6;
 
     }
 

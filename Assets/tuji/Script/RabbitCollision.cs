@@ -10,18 +10,20 @@ public class RabbitCollision : MonoBehaviour
 
     [SerializeField] GameObject rabbit;
 
+    private Vector2 m_playerPosition;
+
     private void Start()
     {
         //m_rabbitAI = FindObjectOfType<RabbitAI>();
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("!!!!");
 
-        if (collision.gameObject.CompareTag("Carrot"))
+        if (collision.gameObject.CompareTag("Player")|| collision.gameObject.CompareTag("Carrot"))
         {
-           //if()
+           m_playerPosition = collision.transform.position;
+            Debug.Log("!!!!");
 
             //Ç…ÇÒÇ∂ÇÒë§Çè¡Ç∑
 
@@ -57,10 +59,10 @@ public class RabbitCollision : MonoBehaviour
             //Ç®Ç—Ç¶ÇÈ
             m_rabbitAI.m_natuki -= 1;
         }
-    }
+    //}
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
         if (collision.CompareTag("Fence"))
         {
             //Debug.Log("!!!");
@@ -75,11 +77,11 @@ public class RabbitCollision : MonoBehaviour
     {
         GameObject nearestRabbit = null;
         float minDistance = Mathf.Infinity;
-        Vector3 carrotPosition = transform.position;
+        Vector3 Position = m_playerPosition;
 
         foreach (GameObject rabbit in rabbits)
         {
-            float distance = Vector3.Distance(rabbit.transform.position, carrotPosition);
+            float distance = Vector3.Distance(rabbit.transform.position, Position);
             
             if (distance < minDistance)
             {

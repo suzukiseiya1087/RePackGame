@@ -20,6 +20,7 @@ public class UIMove : MonoBehaviour
         //hyouji
         m_canvasGroup.alpha = 1.0f;
 
+
     }
     public void Close()
     {
