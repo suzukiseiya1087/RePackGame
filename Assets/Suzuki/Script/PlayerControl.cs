@@ -197,24 +197,7 @@ public class PlayerControl : MonoBehaviour
             // 必要に応じて、他の状態に対する処理をここに追加...
         }
     }
-    //void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Rabbit")) // ウサギとの衝突をチェック
-    //    {
-    //        if (currentState == PlayerState.Hand) // 素手の状態であるかチェック
-    //        {
-    //            // ウサギをなでる処理
-    //            Debug.Log("ウサギをなでました。"); // コンソールにメッセージを表示
-    //        }
-    //        else if (currentState == PlayerState.Carrot) // にんじんを持っている状態
-    //        {
-    //            // ウサギとのトリガーイベントを処理
-    //            ConsumeCarrot();
-    //        }
-    //        // 必要に応じて、他の状態に対する処理をここに追加...
-    //        //    }
-    //    }
-    //}
+   
     void ConsumeCarrot()
     {
        

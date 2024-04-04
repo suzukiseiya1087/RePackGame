@@ -20,7 +20,7 @@ public class PlayerController1: MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && hasFruit)
         {
             // 木の実を非アクティブにして、拾われた状態にする
-            gameObject.SetActive(false);
+            gameObject.SetActive(true);
             ThrowFruit();
         }
     }

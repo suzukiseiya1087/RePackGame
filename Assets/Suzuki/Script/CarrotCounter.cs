@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -32,5 +33,10 @@ public class CarrotCounter : MonoBehaviour
             initialCarrotCount--; // にんじんの個数を1減らす
             UpdateCarrotCountUI(); // UIテキストを更新
         }
+    }
+
+    internal void UpdateCarrotCountUI(int carrotCount)
+    {
+        throw new NotImplementedException();
     }
 }
